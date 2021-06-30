@@ -9,6 +9,7 @@
 name: Merge-upstream
 
 on:
+  workflow_dispatch:
   push:
     branches: 
       - master
