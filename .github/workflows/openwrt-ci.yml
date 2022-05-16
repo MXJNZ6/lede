@@ -72,7 +72,7 @@ jobs:
           du -h --max-depth=1 ./build_dir
           du -h --max-depth=1 ./bin
 
-      - name:update release
+      - name: update release
          uses: actions/upload-artifact@v3
          with:
          name: X86 openwrt
