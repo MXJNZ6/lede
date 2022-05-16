@@ -12,8 +12,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: 0 20 * * *
-  release:
-    types: [published]
 env:
   DIY_SH: diy-X86.sh
   TZ: Asia/Shanghai
@@ -76,5 +74,5 @@ jobs:
 
        - uses: actions/upload-artifact@v3
          with:
-         name: X86
-         path: $GITHUB_WORKSPACE/openwrt/bin/targets
+         name: X86 openwrt
+         path: $GITHUB_WORKSPACE/openwrt/bin/targets/x86/64/
