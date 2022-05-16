@@ -72,8 +72,12 @@ jobs:
           du -h --max-depth=1 ./build_dir
           du -h --max-depth=1 ./bin
 
-      - name: update release
-         uses: actions/upload-artifact@v3
-         with:
-         name: X86 openwrt
-         path: $GITHUB_WORKSPACE/openwrt/bin/targets/x86/64/
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: bin/targets/x86/64
+          asset_name: x86-openwrt
+          tag: X86
+          overwrite: true
+          body: "This is my release text"
