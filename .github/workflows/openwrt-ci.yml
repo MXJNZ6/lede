@@ -12,6 +12,10 @@ on:
     - cron: 0 20 * * *
   release:
     types: [published]
+env:
+  DIY_SH: diy-X86.sh
+  TZ: Asia/Shanghai
+
 
 jobs:
 
@@ -44,17 +48,14 @@ jobs:
 
           df -h
 
-      - name: Update feeds
+      - name: Load custom feeds and configuration
         run: |
-          sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-
-      - name: Generate configuration file
-        run: make defconfig
+          chmod +x $DIY_SH
+          $GITHUB_WORKSPACE/$DIY_SH
+          make defconfig
 
       - name: Make download
-        run: |
+        run: |     
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
 
